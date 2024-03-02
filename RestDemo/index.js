@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const methodOverride = require("path");
+const methodOverride = require("method-override");
 const { v4: uuid } = require("uuid");
 
 app.use(express.urlencoded({ extended: true })); // middleware
@@ -67,12 +67,12 @@ app.patch("/comments/:id", (req, res) => {
   res.redirect("/comments");
 });
 
-app.delete('comments/:id', (req,res)=> {
+app.delete("comments/:id", (req, res) => {
   const { id } = req.params;
-  const foundComment = comments.find(c => c.id === id);
-  comments = comments.filter(c => c.id !== id);
-  res.redirect('/comments');
-})
+  const foundComment = comments.find((c) => c.id === id);
+  comments = comments.filter((c) => c.id !== id);
+  res.redirect("/comments");
+});
 
 app.get("/tacos", (req, res) => {
   res.send("Get /tacos response");
